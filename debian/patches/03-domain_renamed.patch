@@ -15,15 +15,15 @@ Index: abgx360/src/abgx360.c
 -char *autouploadwebaddress = "http://abgx360.net/Apps/Control/AutoUpload.php";          // form for submitting AutoUploads
 -//char *ap25autouploadwebaddress = "http://abgx360.net/Apps/Control/AP25AutoUpload.php";  // form for submitting AP25 AutoUploads
 -//char *webdae = "http://abgx360.net/Apps/Stealth360/dae.bin";                            // http path to dae.bin
-+char *webinidir =            "http://abgx360.xecuter.com/Apps/verified/";                       // dir that contains verified ini files
-+char *webunverifiedinidir =  "http://abgx360.xecuter.com/Apps/unverified/";                     // dir that contains unverified ini files
-+char *webcsv =               "http://abgx360.xecuter.com/Apps/Stealth360/GameNameLookup.csv";   // http path to GameNameLookup.csv
-+char *webdat =               "http://abgx360.xecuter.com/Apps/Stealth360/abgx360.dat";          // http path to abgx360.dat
-+char *webtopology =          "http://abgx360.xecuter.com/Apps/topology.php";                    // http path to topology.php
-+char *webstealthdir =        "http://abgx360.xecuter.com/Apps/StealthFiles/";                   // dir that contains SS/DMI/PFI/Video stealth files
-+char *autouploadwebaddress = "http://abgx360.xecuter.com/Apps/Control/AutoUpload.php";          // form for submitting AutoUploads
-+//char *ap25autouploadwebaddress = "http://abgx360.xecuter.com/Apps/Control/AP25AutoUpload.php";  // form for submitting AP25 AutoUploads
-+//char *webdae = "http://abgx360.xecuter.com/Apps/Stealth360/dae.bin";                            // http path to dae.bin
++char *webinidir =            "https://abgx360.xecuter.com/Apps/verified/";                       // dir that contains verified ini files
++char *webunverifiedinidir =  "https://abgx360.xecuter.com/Apps/unverified/";                     // dir that contains unverified ini files
++char *webcsv =               "https://abgx360.xecuter.com/Apps/Stealth360/GameNameLookup.csv";   // http path to GameNameLookup.csv
++char *webdat =               "https://abgx360.xecuter.com/Apps/Stealth360/abgx360.dat";          // http path to abgx360.dat
++char *webtopology =          "https://abgx360.xecuter.com/Apps/topology.php";                    // http path to topology.php
++char *webstealthdir =        "https://abgx360.xecuter.com/Apps/StealthFiles/";                   // dir that contains SS/DMI/PFI/Video stealth files
++char *autouploadwebaddress = "https://abgx360.xecuter.com/Apps/Control/AutoUpload.php";          // form for submitting AutoUploads
++//char *ap25autouploadwebaddress = "https://abgx360.xecuter.com/Apps/Control/AP25AutoUpload.php";  // form for submitting AP25 AutoUploads
++//char *webdae = "https://abgx360.xecuter.com/Apps/Stealth360/dae.bin";                            // http path to dae.bin
  
  struct waveentry {unsigned long crc; uchar sha1[20]; char *description; bool hosted;};
  struct waveentry currentpfientries[NUM_CURRENTPFIENTRIES];
@@ -41,7 +41,7 @@ Index: abgx360/src/abgx360.c
              else printf("-");
          }
 -        color(normal); printf("[http://abgx360.net]"); color(blue);
-+        color(normal); printf("[http://abgx360.xecuter.com]"); color(blue);
++        color(normal); printf("[https://abgx360.xecuter.com]"); color(blue);
          if (terminal) printf("ÄÄÄÄ");
          else printf("----");
          printf("%s", newline);
@@ -50,40 +50,40 @@ Index: abgx360/src/abgx360.c
          while (fgets(buffer, 2048, inifile) != NULL && m < 2000) {  // 2000 lines limit
              if      (memcmp(buffer, "web_inidir:", 11) == 0) {
 -                getinivalue(buffer, 11, "webinidir",            WEB_INIDIR,           "http://abgx360.net/Apps/verified/");
-+                getinivalue(buffer, 11, "webinidir",            WEB_INIDIR,           "http://abgx360.xecuter.com/Apps/verified/");
++                getinivalue(buffer, 11, "webinidir",            WEB_INIDIR,           "https://abgx360.xecuter.com/Apps/verified/");
              }
              else if (memcmp(buffer, "web_stealthdir:", 15) == 0) {
 -                getinivalue(buffer, 15, "webstealthdir",        WEB_STEALTHDIR,       "http://abgx360.net/Apps/StealthFiles/");
-+                getinivalue(buffer, 15, "webstealthdir",        WEB_STEALTHDIR,       "http://abgx360.xecuter.com/Apps/StealthFiles/");
++                getinivalue(buffer, 15, "webstealthdir",        WEB_STEALTHDIR,       "https://abgx360.xecuter.com/Apps/StealthFiles/");
              }
              else if (memcmp(buffer, "web_csv:", 8) == 0) {
 -                getinivalue(buffer, 8, "webcsv",                WEB_CSV,              "http://abgx360.net/Apps/Stealth360/GameNameLookup.csv");
-+                getinivalue(buffer, 8, "webcsv",                WEB_CSV,              "http://abgx360.xecuter.com/Apps/Stealth360/GameNameLookup.csv");
++                getinivalue(buffer, 8, "webcsv",                WEB_CSV,              "https://abgx360.xecuter.com/Apps/Stealth360/GameNameLookup.csv");
              }
              else if (memcmp(buffer, "web_dat:", 8) == 0) {
 -                getinivalue(buffer, 8, "webdat",                WEB_DAT,              "http://abgx360.net/Apps/Stealth360/abgx360.dat");
-+                getinivalue(buffer, 8, "webdat",                WEB_DAT,              "http://abgx360.xecuter.com/Apps/Stealth360/abgx360.dat");
++                getinivalue(buffer, 8, "webdat",                WEB_DAT,              "https://abgx360.xecuter.com/Apps/Stealth360/abgx360.dat");
              }
              else if (memcmp(buffer, "web_topology:", 13) == 0) {
 -                getinivalue(buffer, 13, "webtopology",          WEB_TOPOLOGY,         "http://abgx360.net/Apps/topology.php");
-+                getinivalue(buffer, 13, "webtopology",          WEB_TOPOLOGY,         "http://abgx360.xecuter.com/Apps/topology.php");
++                getinivalue(buffer, 13, "webtopology",          WEB_TOPOLOGY,         "https://abgx360.xecuter.com/Apps/topology.php");
              }
              else if (memcmp(buffer, "web_autoupload:", 15) == 0) {
 -                getinivalue(buffer, 15, "autouploadwebaddress", WEB_AUTOUPLOAD,       "http://abgx360.net/Apps/Control/AutoUpload.php");
-+                getinivalue(buffer, 15, "autouploadwebaddress", WEB_AUTOUPLOAD,       "http://abgx360.xecuter.com/Apps/Control/AutoUpload.php");
++                getinivalue(buffer, 15, "autouploadwebaddress", WEB_AUTOUPLOAD,       "https://abgx360.xecuter.com/Apps/Control/AutoUpload.php");
              }
              else if (memcmp(buffer, "web_unverifiedinidir:", 21) == 0) {
 -                getinivalue(buffer, 21, "webunverifiedinidir",  WEB_UNVERIFIEDINIDIR, "http://abgx360.net/Apps/unverified/");
-+                getinivalue(buffer, 21, "webunverifiedinidir",  WEB_UNVERIFIEDINIDIR, "http://abgx360.xecuter.com/Apps/unverified/");
++                getinivalue(buffer, 21, "webunverifiedinidir",  WEB_UNVERIFIEDINIDIR, "https://abgx360.xecuter.com/Apps/unverified/");
              }
              /*
              else if (memcmp(buffer, "web_ap25autoupload:", 19) == 0) {
 -                getinivalue(buffer, 19, "ap25autouploadwebaddress", WEB_AP25AUTOUPLOAD, "http://abgx360.net/Apps/Control/AP25AutoUpload.php");
-+                getinivalue(buffer, 19, "ap25autouploadwebaddress", WEB_AP25AUTOUPLOAD, "http://abgx360.xecuter.com/Apps/Control/AP25AutoUpload.php");
++                getinivalue(buffer, 19, "ap25autouploadwebaddress", WEB_AP25AUTOUPLOAD, "https://abgx360.xecuter.com/Apps/Control/AP25AutoUpload.php");
              }
              else if (memcmp(buffer, "web_dae:", 8) == 0) {
 -                getinivalue(buffer, 8, "webdae",                    WEB_DAE,          "http://abgx360.net/Apps/Stealth360/dae.bin");
-+                getinivalue(buffer, 8, "webdae",                    WEB_DAE,          "http://abgx360.xecuter.com/Apps/Stealth360/dae.bin");
++                getinivalue(buffer, 8, "webdae",                    WEB_DAE,          "https://abgx360.xecuter.com/Apps/Stealth360/dae.bin");
              }
              */
              memset(buffer, 0, 2048);
