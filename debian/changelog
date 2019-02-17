@@ -1,3 +1,9 @@
+abgx360 (1.0.6-2) unstable; urgency=medium
+
+  * 03-domain_renamed.patch: Update scheme in api url.
+
+ -- Alexander GQ Gerasiov <gq@debian.org>  Sun, 17 Feb 2019 12:19:09 +0300
+
 abgx360 (1.0.6-1) unstable; urgency=low
 
   * Initial Release.
