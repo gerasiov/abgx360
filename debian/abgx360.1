@@ -1,0 +1,255 @@
+.TH "ABGX360" 1 "February 2012" "abgx360" "XBox360 ISO image manipulation tool"
+.SH NAME
+abgx360 \- manual page for abgx360
+.SH SYNOPSIS
+.B abgx360
+[\fIoptions\fR] \fI<input file(s)>\fR
+.SH DESCRIPTION
+XBox360 ISO image verifier and patcher. XGD3 and AP25 images are supported.
+.PP
+<input file(s)> can be Xbox 360 ISOs, Xex's, or SS/Stealth files \- abgx360 will
+recognize them automatically and only process the appropriate options.
+.PP
+Short options can be combined into one argument (Ex: "abgx360 \fB\-vw\fR IMAGE.000")
+.SH OPTIONS
+
+.TP
+\fB\-\-\fR
+this is a special option that needs to come after
+[options] but before <input file(s)> if any filenames
+begin with a hyphen
+.TP
+\fB\-v\fR,  \fB\-\-verbose\fR
+high verbosity
+.TP
+\fB\-n\fR,  \fB\-\-noverbose\fR
+low verbosity
+.TP
+\fB\-t\fR,  \fB\-\-terminal\fR
+use Terminal font characters
+.TP
+\fB\-c\fR,  \fB\-\-corrupt\fR
+always check for AnyDVD style game data corruption
+.TP
+\fB\-h\fR,  \fB\-\-html\fR
+output html (Ex: "abgx360 \fB\-vhiw\fR IMAGE.000 > IMAGE.html")
+.TP
+\fB\-\-showfiles\fR
+display ISO filesystem
+.TP
+\fB\-p\fR,  \fB\-\-padding\fR
+check/fix Video zero padding (doesn't affect stealth)
+.TP
+\fB\-\-pL0\fR
+if using \fB\-p\fR or \fB\-\-padding\fR, this option is also needed to
+enable fixing XGD2 L0 zero padding (don't add this option
+until you've read the message that comes up when XGD2 L0
+padding is not blank)
+.TP
+\fB\-s\fR,  \fB\-\-stripcolors\fR
+strips colors (useful if you're directing output to a
+text file)
+.TP
+\fB\-d\fR,  \fB\-\-nodvdcheck\fR
+don't check for/create valid .dvd file
+.TP
+\fB\-r\fR,  \fB\-\-regioncheck\fR
+check the region code only (no stealth check)
+.TP
+\fB\-\-noverify\fR
+don't attempt to verify against the verified database
+(local or online) if stealth passes
+.TP
+\fB\-\-noupdate\fR
+don't check for updates
+.TP
+\fB\-\-csv\fR
+include GameNameLookup.csv in the check for updates
+.TP
+\fB\-o\fR,  \fB\-\-stayoffline\fR
+disable all online functions and prevent AutoFix/Verify
+from looking in the online database for verified files
+.TP
+\fB\-w\fR,  \fB\-\-nowrite\fR
+disable all writes to the input file(s) (for when you
+just want to check files without modifying them)
+.TP
+\fB\-e\fR,  \fB\-\-ach\fR
+show achievements
+.TP
+\fB\-\-achs\fR
+show achievements but hide secret ones
+.TP
+\fB\-\-aa\fR
+show avatar awards
+.TP
+\fB\-i\fR,  \fB\-\-images\fR
+extract images from the Xex (recommended for html output)
+.TP
+\fB\-\-embed\fR
+embed images in html source code for better portability
+.PP
+Game Partition CRC (default behavior is to check it only when needed):
+.TP
+\fB\-\-gamecrc\fR
+always check it
+.TP
+\fB\-g\fR,  \fB\-\-nogamecrc\fR
+never check it
+.PP
+AutoFix Threshold (use only one option, higher levels include lower ones):
+.TP
+\fB\-a\fR,  \fB\-\-af3\fR,  \fB\-\-autofixalways\fR
+level 3: AutoFix if stealth passes but fails
+verification
+.TP
+[default threshold]
+level 2: AutoFix if stealth is uncertain and
+.IP
+fails verification
+.TP
+\fB\-\-af1\fR,  \fB\-\-autofixfailed\fR
+level 1: AutoFix only if stealth fails
+.TP
+\fB\-f\fR,  \fB\-\-af0\fR,  \fB\-\-noautofix\fR
+level 0: Do not AutoFix
+.PP
+Where should AutoFix and Verification look for verified files:
+.TP
+[default setting]
+check the the online database for updated inis and
+get new stealth files from it when needed
+.TP
+\fB\-\-localonly\fR
+check the local StealthFiles folder only for inis
+and stealth files
+.PP
+Rebuilding Method (choose the method for rebuilding an ISO if it's missing
+space for a video partition):
+.TP
+[default method]
+requires 7 \- 7.5 GB free space on the partition
+your ISO is located
+.TP
+\fB\-l\fR,  \fB\-\-rebuildlowspace\fR
+only requires 253 MB free space but will corrupt
+your ISO if it fails or is aborted during the
+rebuilding process
+.TP
+\fB\-b\fR,  \fB\-\-norebuild\fR
+don't rebuild
+.TP
+\fB\-k\fR,  \fB\-\-keeporiginaliso\fR
+don't delete the original ISO after rebuilding
+(applies to the default method only)
+.PP
+Manually patch or extract files:
+.TP
+\fB\-\-p\-video\fR <file>
+patch video from <file>
+.TP
+\fB\-\-p\-pfi\fR <file>
+patch PFI from <file>
+.TP
+\fB\-\-p\-dmi\fR <file>
+patch DMI from <file>
+.TP
+\fB\-\-p\-ss\fR <file>
+patch SS from <file>
+.TP
+\fB\-\-patchitanyway\fR
+patch files even if stealth passes (default behavior
+is to patch only if stealth fails and isn't AutoFixed,
+or stealth is uncertain and isn't verified/AutoFixed)
+.TP
+\fB\-\-patchgarbage\fR
+patch files even if they're invalid
+.TP
+\fB\-\-e\-video\fR <file>
+extract video to <file>
+.TP
+\fB\-\-e\-pfi\fR <file>
+extract PFI to <file>
+.TP
+\fB\-\-e\-dmi\fR <file>
+extract DMI to <file>
+.TP
+\fB\-\-e\-ss\fR <file>
+extract SS to <file>
+.TP
+\fB\-\-clobber\fR
+overwrite extracted files without prompting
+.PP
+Misc:
+.TP
+\fB\-\-lang\fR <number>
+choose a preferred language to use when displaying
+strings from the title id resource (default=1)
+.TP
+1 = English
+2 = Japanese
+.TP
+3 = German
+4 = French
+.TP
+5 = Spanish
+6 = Italian
+.TP
+7 = Korean
+8 = Traditional Chinese
+.TP
+9 = Portuguese
+10 = Simplified Chinese
+.TP
+11 = Polish
+12 = Russian
+.TP
+\fB\-\-skiplb\fR
+skip checking the layerbreak on burned dvds
+(useful if your drive doesn't support checking it)
+.TP
+\fB\-\-notrust\fR
+don't trust SS v2 angles
+.TP
+\fB\-\-nofixdrt\fR
+don't fix SS C/R table if data is invalid
+.TP
+\fB\-\-dev\fR <deviation>
+fix angles that deviate more than <deviation>
+degrees from their CCRT targets (default=3)
+.TP
+\fB\-\-nofixdev\fR
+don't fix any deviating angles
+.TP
+\fB\-x\fR,  \fB\-\-fixangle359\fR
+change any 359 degree angles to 0 for compatibility
+with iXtreme versions previous to v1.4
+.TP
+\fB\-\-rgn\fR <code>
+tell abgx360 your console's region so it can display
+your game's region code in the appropriate color.
+use multiple regions if you have multiple consoles.
+Ex codes: 000000FF (NTSC/U), 00FE0000 (PAL Europe),
+00FE01FF (PAL Europe, NTSC/J Japan and NTSC/U)
+.TP
+\fB\-\-truncate\fR <size>
+truncate or extend input file to <size> bytes
+be very careful with this!
+.TP
+\fB\-\-retries\fR <number>
+change the number of retries before a read/write
+error is considered unrecoverable (default=20)
+.TP
+\fB\-\-nettimeout\fR <secs> change the connection timeout to <secs> seconds
+(default=20; 0=use the system's internal timeout)
+.TP
+\fB\-\-dvdtimeout\fR <secs> change the timeout for DVD Drive I/O requests to
+<secs> seconds (default=20)
+.TP
+\fB\-\-devkey\fR
+use the devkit AES key when decrypting an Xex
+.TP
+\fB\-\-help\fR
+display this message (or just use "abgx360"
+with no arguments)
+.PP

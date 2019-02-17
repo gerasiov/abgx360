@@ -1,0 +1,4 @@
+# Compulsory line, this is a version 3 file
+version=3
+
+http://abgx360.net/download.php abgx360-(.*)\.tar\.gz

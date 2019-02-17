@@ -1,0 +1,12 @@
+Index: src/abgx360.c
+===================================================================
+--- a/src/abgx360.c	2012-02-28 23:56:39.000000000 +0400
++++ b/src/abgx360.c	2012-02-28 23:57:46.000000000 +0400
+@@ -3607,6 +3607,7 @@
+     
+     if (argc < 2) {
+         usage:
++         stripcolors=1;
+         printheader();
+         color(white);
+         printf("Usage: %s [options] %sinput file(s)%s%s", argv[0], lessthan, greaterthan, newline);

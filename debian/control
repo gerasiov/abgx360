@@ -1,0 +1,13 @@
+Source: abgx360
+Section: otherosfs
+Priority: extra
+Maintainer: Alexander GQ Gerasiov <gq@debian.org>
+Build-Depends: debhelper (>= 8.0.0), autotools-dev, libcurl4-gnutls-dev, zlib1g-dev
+Standards-Version: 3.9.2
+Homepage: http://abgx360.xecuter.com/
+
+Package: abgx360
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: XBox360 ISO image verifier and patcher
+ XGD3 and AP25 images are supported.
